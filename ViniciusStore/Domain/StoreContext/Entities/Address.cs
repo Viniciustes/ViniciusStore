@@ -1,8 +1,9 @@
 ﻿using Domain.StoreContext.Enums;
+using FluentValidator;
 
 namespace Domain.StoreContext.Entities
 {
-    public class Address
+    public class Address : Notifiable
     {
         #region Constructors
         public Address(string street, string number, string complement, string district, string city, string state, string country, string zipCode, EAddressType addressType)

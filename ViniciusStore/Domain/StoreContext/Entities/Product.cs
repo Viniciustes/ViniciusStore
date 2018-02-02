@@ -1,6 +1,8 @@
-﻿namespace Domain.StoreContext.Entities
+﻿using FluentValidator;
+
+namespace Domain.StoreContext.Entities
 {
-    public class Product
+    public class Product : Notifiable
     {
         #region Constructor
         public Product(string title, string description, string image, decimal price, decimal quantityOnHand)
