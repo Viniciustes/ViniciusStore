@@ -3,11 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{3DF5919F-F5B9-4E55-8D09-D2807CDB4686}"
-	ProjectSection(SolutionItems) = preProject
-		Informações.txt = Informações.txt
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ViniciusStore.Domain", "ViniciusStore.Domain", "{116420EA-E083-40E7-B84B-0E596673B6E8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ViniciusStore.Infra", "ViniciusStore.Infra", "{F455CB0D-C5FA-4FF0-9773-6BBD44BBB2AD}"
@@ -27,6 +22,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{CD025AC9-1B9B-464F-B82E-867794676068}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testes", "Testes\Testes.csproj", "{65CA3D1D-E286-49AA-87CB-2861F7305234}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{015AF0F0-5398-437C-A4EB-BC19208A98A7}"
+	ProjectSection(SolutionItems) = preProject
+		Documents\Informações.txt = Documents\Informações.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
