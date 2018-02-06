@@ -32,11 +32,6 @@ namespace Domain.StoreContext.Entities
         #endregion
 
         #region Methods
-        public void AddItem(OrderItem item)
-        {
-            _items.Add(item);
-        }
-
         public void AddItem(Product product, decimal quantity)
         {
             if (quantity > product.QuantityOnHand)
@@ -67,10 +62,11 @@ namespace Domain.StoreContext.Entities
         public void ShipOrder()
         {
             // Regra, a cada 5 produtos é gerado uma entrega
-            var deliveries = new List<Delivery>
-            {
-                new Delivery(DateTime.Now.AddDays(5))
-            };
+            var deliveries = new List<Delivery>();
+
+            // Gera a primeira entrega para pedidos com menos de 5 produtos ou número de produtos não multiplos de 5.
+            if (_items.Count % 5 != 0 && _items.Count > 5 || _items.Count < 5 && deliveries.Count < 1)
+                deliveries.Add(new Delivery(DateTime.Now.AddDays(5)));
 
             // Quebra as entregas
             var count = 1;
@@ -78,7 +74,7 @@ namespace Domain.StoreContext.Entities
             {
                 if (count == 5)
                 {
-                    count = 1;
+                    count = 0;
                     deliveries.Add(new Delivery(DateTime.Now.AddDays(5)));
                 }
                 count++;

@@ -24,6 +24,8 @@ namespace Domain.StoreContext.Entities
         #endregion
 
         #region Methods
+        public void DecreaseQuantity(decimal quantity) => QuantityOnHand -= quantity;
+      
         public override string ToString() => Title;
         #endregion
     }

@@ -1,11 +1,20 @@
-﻿namespace Domain.StoreContext.ValueObjects
+﻿using FluentValidator;
+using FluentValidator.Validation;
+
+namespace Domain.StoreContext.ValueObjects
 {
-    public class Email
+    public class Email : Notifiable
     {
         #region Constructors
         public Email(string address)
         {
             Address = address;
+
+            AddNotifications(
+                new ValidationContract()
+                    .Requires()
+                    .IsEmail(Address, "Address", "E-mail inválido.")
+                );
         }
         #endregion
 

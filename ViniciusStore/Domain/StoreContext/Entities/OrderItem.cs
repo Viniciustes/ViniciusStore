@@ -14,6 +14,8 @@ namespace Domain.StoreContext.Entities
             if (product.QuantityOnHand < quantity)
                 AddNotification("Quantity", "Produto fora de estoque");
 
+            product.DecreaseQuantity(quantity);
+
             //Exemplo de Validação de regras de negócio
             //Notifications = new Dictionary<string, string>();
             //if (product.QuantityOnHand < quantity)
