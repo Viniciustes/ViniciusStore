@@ -11,8 +11,8 @@ namespace Testes.ValueObjects
 
         public DocumentTests()
         {
-            _validDocument = new Document("28659170377");
-            _invalidDocument = new Document("12345678901");
+            _validDocument = new Document("99999999999");
+            _invalidDocument = new Document("95321556632");
         }
 
         [TestMethod]

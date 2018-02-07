@@ -1,12 +1,12 @@
 ﻿using Domain.StoreContext.Enums;
-using FluentValidator;
+using Shared.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Domain.StoreContext.Entities
 {
-    public class Order : Notifiable
+    public class Order : Entity
     {
         #region Constructor
         public Order(Customer customer)

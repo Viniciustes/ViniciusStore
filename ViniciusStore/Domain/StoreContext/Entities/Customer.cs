@@ -1,11 +1,11 @@
 ﻿using Domain.StoreContext.ValueObjects;
-using FluentValidator;
+using Shared.Entities;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Domain.StoreContext.Entities 
+namespace Domain.StoreContext.Entities
 {
-    public class Customer : Notifiable
+    public class Customer : Entity
     {
         #region Constructors
         public Customer(Name name, Document document, Email email, string phone)
@@ -33,8 +33,6 @@ namespace Domain.StoreContext.Entities
         {
             _addresses.Add(address);
         }
-
-        public void Register() { }
 
         public override string ToString() => Name.ToString();
         #endregion

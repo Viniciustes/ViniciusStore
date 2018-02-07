@@ -1,9 +1,9 @@
 ﻿using Domain.StoreContext.Enums;
-using FluentValidator;
+using Shared.Entities;
 
 namespace Domain.StoreContext.Entities
 {
-    public class Address : Notifiable
+    public class Address : Entity
     {
         #region Constructors
         public Address(string street, string number, string complement, string district, string city, string state, string country, string zipCode, EAddressType addressType)
@@ -33,10 +33,7 @@ namespace Domain.StoreContext.Entities
         #endregion
 
         #region Methods
-        public override string ToString()
-        {
-            return $"{Street}, {Number}, {Complement} - {District} - {City}/{State} - {Country} - {ZipCode}";
-        }
+        public override string ToString() => $"{Street}, {Number}, {Complement} - {District} - {City}/{State} - {Country} - {ZipCode}";
         #endregion
     }
 }

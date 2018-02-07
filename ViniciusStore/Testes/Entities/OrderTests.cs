@@ -16,7 +16,7 @@ namespace Testes.Entities
         public OrderTests()
         {
             var name = new Name("myFirtName", "myLastName");
-            var document = new Document("28659170377");
+            var document = new Document("99999999999");
             var email = new Email("myEmail@email.com");
             var customer = new Customer(name, document, email, "99999-9999");
 

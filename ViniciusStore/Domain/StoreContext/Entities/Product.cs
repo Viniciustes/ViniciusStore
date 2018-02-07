@@ -1,8 +1,9 @@
-﻿using FluentValidator;
+﻿using FluentValidator.Validation;
+using Shared.Entities;
 
 namespace Domain.StoreContext.Entities
 {
-    public class Product : Notifiable
+    public class Product : Entity
     {
         #region Constructor
         public Product(string title, string description, string image, decimal price, decimal quantityOnHand)
@@ -12,6 +13,8 @@ namespace Domain.StoreContext.Entities
             Image = image;
             Price = price;
             QuantityOnHand = quantityOnHand;
+
+            CallNotifications();
         }
         #endregion
 
@@ -25,7 +28,15 @@ namespace Domain.StoreContext.Entities
 
         #region Methods
         public void DecreaseQuantity(decimal quantity) => QuantityOnHand -= quantity;
-      
+
+        private void CallNotifications() =>
+            AddNotifications(new ValidationContract()
+               .Requires()
+               .HasMinLen(Title, 3, "Title", "O nome do produto deve conter pelo menos 3 caracteres")
+               .HasMaxLen(Title, 100, "Title", "O nome do produto deve conter no máximo 100 caracteres")
+                .IsGreaterThan(Price, 0, "Price", "O valor do produto deve ser maior que 0")
+               );
+
         public override string ToString() => Title;
         #endregion
     }

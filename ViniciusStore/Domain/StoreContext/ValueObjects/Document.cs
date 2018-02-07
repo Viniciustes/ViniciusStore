@@ -10,10 +10,7 @@ namespace Domain.StoreContext.ValueObjects
         {
             Number = number;
 
-            AddNotifications(
-                new ValidationContract()
-                    .IsTrue(ValidadeCPF(Number), "Document", "CPF inválido")
-                );
+            CallNotifications();
         }
         #endregion
 
@@ -22,8 +19,6 @@ namespace Domain.StoreContext.ValueObjects
         #endregion
 
         #region Methods
-        public override string ToString() => Number;
-
         private bool ValidadeCPF(string cpf)
         {
             int[] multiplicador1 = new int[9] { 10, 9, 8, 7, 6, 5, 4, 3, 2 };
@@ -59,6 +54,15 @@ namespace Domain.StoreContext.ValueObjects
             digito = digito + resto.ToString();
             return cpf.EndsWith(digito);
         }
+
+        private void CallNotifications() =>
+            AddNotifications(
+                 new ValidationContract()
+                     .IsTrue(ValidadeCPF(Number), "Document", "CPF inválido")
+                     .HasLen(Number, 11, "Number", "CPF inválido")
+                 );
+
+        public override string ToString() => Number;
         #endregion
     }
 }

@@ -1,10 +1,10 @@
 ﻿using Domain.StoreContext.Enums;
-using FluentValidator;
+using Shared.Entities;
 using System;
 
 namespace Domain.StoreContext.Entities
 {
-    public class Delivery : Notifiable
+    public class Delivery : Entity
     {
         #region Constructor
         public Delivery(DateTime estimatedDeliveryDate)

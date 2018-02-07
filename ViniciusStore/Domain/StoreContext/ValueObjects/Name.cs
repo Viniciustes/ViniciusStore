@@ -27,10 +27,7 @@ namespace Domain.StoreContext.ValueObjects
         #endregion
 
         #region Methods
-        public override string ToString()
-        {
-            return $"{FirstName} {LastName}";
-        }
+        public override string ToString() => $"{FirstName} {LastName}";
         #endregion
     }
 }
