@@ -13,19 +13,24 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ViniciusStore.Tests", "Vini
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ViniciusStore.Api", "ViniciusStore.Api", "{73A6538B-3D58-409C-A43D-E306954C6E89}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api", "Api\Api.csproj", "{B0B48039-16EB-4004-B4A7-8162D4CA72DF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api", "Api\Api.csproj", "{B0B48039-16EB-4004-B4A7-8162D4CA72DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{D675D917-232A-4290-9937-1CD62848462F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{D675D917-232A-4290-9937-1CD62848462F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infra", "Infra\Infra.csproj", "{8093ABF7-B480-4181-B870-8BC1962F5022}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infra", "Infra\Infra.csproj", "{8093ABF7-B480-4181-B870-8BC1962F5022}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{CD025AC9-1B9B-464F-B82E-867794676068}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "Shared\Shared.csproj", "{CD025AC9-1B9B-464F-B82E-867794676068}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testes", "Testes\Testes.csproj", "{65CA3D1D-E286-49AA-87CB-2861F7305234}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Testes", "Testes\Testes.csproj", "{65CA3D1D-E286-49AA-87CB-2861F7305234}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{015AF0F0-5398-437C-A4EB-BC19208A98A7}"
 	ProjectSection(SolutionItems) = preProject
+		Documents\CreateDataBaseInitial.sql = Documents\CreateDataBaseInitial.sql
 		Documents\Informações.txt = Documents\Informações.txt
+		Documents\Procedures\spuCheckDocument.sql = Documents\Procedures\spuCheckDocument.sql
+		Documents\Procedures\spuCheckEmail.sql = Documents\Procedures\spuCheckEmail.sql
+		Documents\Procedures\spuCreateAddress.sql = Documents\Procedures\spuCreateAddress.sql
+		Documents\Procedures\spuCreateCustomer.sql = Documents\Procedures\spuCreateCustomer.sql
 	EndProjectSection
 EndProject
 Global
