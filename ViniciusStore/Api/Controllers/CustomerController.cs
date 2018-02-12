@@ -1,6 +1,11 @@
 ﻿using Domain.StoreContext.Commands.CustomerCommands.Inputs;
+using Domain.StoreContext.Commands.CustomerCommands.Outputs;
 using Domain.StoreContext.Entities;
+using Domain.StoreContext.Handlers;
+using Domain.StoreContext.Queries;
+using Domain.StoreContext.Repositories;
 using Domain.StoreContext.ValueObjects;
+using Infra.StoreContext.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,47 +14,42 @@ namespace Api.Controllers
 {
     public class CustomerController : Controller
     {
+        private readonly ICostumerRepository costumerRepository;
+        private readonly CustomerHandler customerHandler;
+
+        public CustomerController(ICostumerRepository costumerRepository, CustomerHandler customerHandler)
+        {
+            this.costumerRepository = costumerRepository;
+            this.customerHandler = customerHandler;
+        }
+
         [HttpGet]
         [Route("customers")]
-        public List<Customer> Get()
+        public IEnumerable<ListCustomerQueryResult> Get()
         {
-            var name = new Name("myFirtName", "myLastName");
-            var document = new Document("99999999999");
-            var email = new Email("myEmail@email.com");
-            var customer = new Customer(name, document, email, "99999-9999");
-
-            return new List<Customer> { customer };
+            return costumerRepository.GetAllCustomer();
         }
 
         [HttpGet]
         [Route("customers/{id:Guid}")]
-        public Customer GetById(Guid id)
+        public GetCustomerQueryResult GetById(Guid id)
         {
-            var name = new Name("myFirtName", "myLastName");
-            var document = new Document("99999999999");
-            var email = new Email("myEmail@email.com");
-            var customer = new Customer(name, document, email, "99999-9999");
-
-            return customer;
+            return costumerRepository.GetCustomerById(id);
         }
 
         [HttpGet]
         [Route("customers/{id:Guid}/orders")]
-        public List<Order> GetOrders(Guid id)
+        public IEnumerable<ListCustomerOrderQueryResult> GetOrders(Guid id)
         {
-            return null;
+            return costumerRepository.GetCustomerOrdersById(id);
         }
 
         [HttpPost]
         [Route("customers")]
-        public Customer Post([FromBody]CreateCustomerCommand customerCommand)
+        public CreateCustomerCommandResult Post([FromBody]CreateCustomerCommand customerCommand)
         {
-            var name = new Name(customerCommand.FirstName, customerCommand.LastName);
-            var document = new Document(customerCommand.Document);
-            var email = new Email(customerCommand.Email);
-            var customer = new Customer(name, document, email, customerCommand.Phone);
 
-            return customer;
+            return customerHandler.Handle(customerCommand);
         }
 
         [HttpPut]

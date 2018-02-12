@@ -3,6 +3,8 @@ using Domain.StoreContext.Entities;
 using Domain.StoreContext.Queries;
 using Domain.StoreContext.Repositories;
 using Infra.StoreContext.DataContexts;
+using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 
@@ -25,6 +27,21 @@ namespace Infra.StoreContext.Repositories
         public bool CheckCustomerExistsByEmail(string email)
         {
             return viniciusDataContext.SqlConnection.Query<bool>("spuCheckEmail", new { Document = email }, commandType: CommandType.StoredProcedure).FirstOrDefault();
+        }
+
+        public IEnumerable<ListCustomerQueryResult> GetAllCustomer()
+        {
+            return viniciusDataContext.SqlConnection.Query<ListCustomerQueryResult>("SELECT [Id],CONCAT(FirstName, ' ', LastName) As 'Name',[Document],[Email]FROM [Customer] NOLOCK");
+        }
+
+        public GetCustomerQueryResult GetCustomerById(Guid id)
+        {
+            return viniciusDataContext.SqlConnection.Query<GetCustomerQueryResult>("SELECT [Id],CONCAT(FirstName, ' ', LastName) As 'Name',[Document],[Email]FROM [Customer] NOLOCK WHERE [Id]=@id", new { Id = id }).FirstOrDefault();
+        }
+
+        public IEnumerable<ListCustomerOrderQueryResult> GetCustomerOrdersById(Guid id)
+        {
+            return viniciusDataContext.SqlConnection.Query<ListCustomerOrderQueryResult>("SELECT [Id],CONCAT(FirstName, ' ', LastName) As 'Name',[Document],[Email]FROM [Customer] NOLOCK WHERE [Id]=@id", new { Id = id });
         }
 
         public CustomerOrdersCountResult GetCustomerOrdersCountResult(string document)

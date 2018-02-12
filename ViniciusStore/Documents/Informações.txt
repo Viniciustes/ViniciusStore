@@ -1,0 +1,7 @@
+Faz se necessário instalação do Dapper
+Install-Package Dapper
+
+Faz se necessário intalação do FluentValidator
+Install-Package FluentValidator
+
+Faz se necessário instalação de injeção de dependência
