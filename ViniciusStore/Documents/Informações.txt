@@ -1,7 +1,14 @@
+Instalação do MVC ao projeto que foi criado do zero.
+Install-Package Microsoft.AspNetCore
+
 Faz se necessário instalação do Dapper
 Install-Package Dapper
 
 Faz se necessário intalação do FluentValidator
 Install-Package FluentValidator
 
-Faz se necessário instalação de injeção de dependência
+Para instalação de Compression na API instalar:
+Install-Package Microsoft.AspNetCore.ResponseCompression
+Adicionar no Startup os comandos:
+services.AddResponseCompression();
+app.UseResponseCompression();

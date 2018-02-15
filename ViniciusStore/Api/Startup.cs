@@ -15,8 +15,9 @@ namespace Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddResponseCompression();
 
-            services.AddScoped<ViniciusDataContext, ViniciusDataContext>();
+            services.AddScoped<IViniciusDataContext, ViniciusDataContext>();
             services.AddTransient<CustomerHandler, CustomerHandler>();
             services.AddTransient<ICostumerRepository, CostumerRepository>();
             services.AddTransient<IEmailService, EmailService>();
@@ -28,6 +29,7 @@ namespace Api
                 app.UseDeveloperExceptionPage();
 
             app.UseMvc();
+            app.UseResponseCompression();
         }
     }
 }

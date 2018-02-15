@@ -4,8 +4,6 @@ using Domain.StoreContext.Entities;
 using Domain.StoreContext.Handlers;
 using Domain.StoreContext.Queries;
 using Domain.StoreContext.Repositories;
-using Domain.StoreContext.ValueObjects;
-using Infra.StoreContext.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -25,45 +23,34 @@ namespace Api.Controllers
 
         [HttpGet]
         [Route("customers")]
-        public IEnumerable<ListCustomerQueryResult> Get()
-        {
-            return costumerRepository.GetAllCustomer();
-        }
+        [ResponseCache(Duration = 60)]
+        public IEnumerable<ListCustomerQueryResult> Get() => costumerRepository.GetAllCustomer();
 
         [HttpGet]
         [Route("customers/{id:Guid}")]
-        public GetCustomerQueryResult GetById(Guid id)
-        {
-            return costumerRepository.GetCustomerById(id);
-        }
+        public GetCustomerQueryResult GetById(Guid id) => costumerRepository.GetCustomerById(id);
 
         [HttpGet]
         [Route("customers/{id:Guid}/orders")]
-        public IEnumerable<ListCustomerOrderQueryResult> GetOrders(Guid id)
-        {
-            return costumerRepository.GetCustomerOrdersById(id);
-        }
+        public IEnumerable<ListCustomerOrderQueryResult> GetOrders(Guid id) => costumerRepository.GetCustomerOrdersById(id);
 
         [HttpPost]
         [Route("customers")]
-        public CreateCustomerCommandResult Post([FromBody]CreateCustomerCommand customerCommand)
+        public object Post([FromBody]CreateCustomerCommand customerCommand)
         {
+            var commandResult = (CreateCustomerCommandResult)customerHandler.Handle(customerCommand);
+            if (customerHandler.Invalid)
+                return BadRequest(customerHandler.Notifications);
 
-            return customerHandler.Handle(customerCommand);
+            return commandResult;
         }
 
         [HttpPut]
         [Route("customers/{id:Guid}")]
-        public Customer Put([FromBody]Customer customer)
-        {
-            return null;
-        }
+        public Customer Put([FromBody]Customer customer) => null;
 
         [HttpDelete]
         [Route("customers/{id:Guid}")]
-        public object Delete(Guid id)
-        {
-            return new { message = "Cliente removido com sucesso" };
-        }
+        public object Delete(Guid id) => new { message = "Cliente removido com sucesso" };
     }
 }
