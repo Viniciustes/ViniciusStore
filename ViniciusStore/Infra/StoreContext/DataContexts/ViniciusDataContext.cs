@@ -5,7 +5,7 @@ using Shared.Configurations;
 
 namespace Infra.StoreContext.DataContexts
 {
-    public class ViniciusDataContext : IViniciusDataContext, IDisposable
+    public class ViniciusDataContext : IDisposable
     {
         public SqlConnection SqlConnection { get; set; }
 

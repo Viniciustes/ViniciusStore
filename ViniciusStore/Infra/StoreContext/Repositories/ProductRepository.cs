@@ -1,6 +1,5 @@
 ﻿using Domain.StoreContext.Entities;
 using Domain.StoreContext.Repositories;
-using Infra.StoreContext.DataContexts;
 
 namespace Infra.StoreContext.Repositories
 {
@@ -8,7 +7,7 @@ namespace Infra.StoreContext.Repositories
     {
         public bool CheckProductExistsByTitle(string title)
         {
-            viniciusDataContext.Dispose();
+            DbContext.Dispose();
             throw new System.NotImplementedException();
         }
 

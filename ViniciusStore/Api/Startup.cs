@@ -1,7 +1,6 @@
 ﻿using Domain.StoreContext.Handlers;
 using Domain.StoreContext.Repositories;
 using Domain.StoreContext.Services;
-using Infra.StoreContext.DataContexts;
 using Infra.StoreContext.Repositories;
 using Infra.StoreContext.Services;
 using Microsoft.AspNetCore.Builder;
@@ -17,7 +16,6 @@ namespace Api
             services.AddMvc();
             services.AddResponseCompression();
 
-            services.AddScoped<IViniciusDataContext, ViniciusDataContext>();
             services.AddTransient<CustomerHandler, CustomerHandler>();
             services.AddTransient<ICostumerRepository, CostumerRepository>();
             services.AddTransient<IEmailService, EmailService>();

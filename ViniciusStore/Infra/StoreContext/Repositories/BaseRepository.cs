@@ -4,14 +4,14 @@ using System.Data;
 
 namespace Infra.StoreContext.Repositories
 {
-    public class BaseRepository: IDisposable
+    public class BaseRepository : IDisposable
     {
-        protected readonly ViniciusDataContext viniciusDataContext = new ViniciusDataContext();
+        protected readonly ViniciusDataContext DbContext = new ViniciusDataContext();
 
         public void Dispose()
         {
-            if (viniciusDataContext.SqlConnection.State != ConnectionState.Closed)
-                viniciusDataContext.SqlConnection.Close();
+            if (DbContext.SqlConnection.State != ConnectionState.Closed)
+                DbContext.SqlConnection.Close();
         }
     }
 }
